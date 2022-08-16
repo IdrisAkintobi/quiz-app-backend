@@ -31,6 +31,11 @@ export const redisClient = new Redis({
 redisClient.on("connect", () =>
   console.log(`⚡ Redis connected to ${REDIS_HOST}`)
 );
-redisClient.on("error", (err) => console.log(`🚩 Redis error: ${err}`));
+redisClient.on("error", (err) => {
+  console.log(`🚩 Redis connection error ---- ${err}`);
+  //TODO: to be removed in production
+  //Disconnect from Redis i.e on OS doesn't support Redis
+  redisClient.disconnect();
+});
 
 export default connectDB;
