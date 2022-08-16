@@ -1,5 +1,5 @@
 import app from "./app";
-import connectDB from "./db/connectDB";
+import { connectDB } from "./db/connectDB";
 
 const PORT = process.env.NODE_DOCKER_PORT;
 
