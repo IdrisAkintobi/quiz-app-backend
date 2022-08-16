@@ -13,8 +13,8 @@ const {
 
 const connectDB = async () => {
   try {
-    const atlas_uri = `mongodb+srv://${DB_User}:${DB_Pwd}@${DB_Host}/${DB_Name}?retryWrites=true&w=majority`;
-    mongoose.connect(atlas_uri);
+    const uri = `mongodb+srv://${DB_User}:${DB_Pwd}@${DB_Host}/${DB_Name}?retryWrites=true&w=majority`;
+    mongoose.connect(uri);
     console.log(`🔌 Database connected to ${DB_Host}`);
   } catch (err) {
     console.log(`could not connect to mongodb ---- ${err}`);
