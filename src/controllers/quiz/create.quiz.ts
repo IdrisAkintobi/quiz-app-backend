@@ -22,10 +22,8 @@ const createQuiz = asyncHandler(async (req: Request, res: Response) => {
   const session = await startSession();
   session.startTransaction();
   try {
-    await Promise.all([
-      quiz.save({ session }),
-      Question.insertMany(questions, { session }),
-    ]);
+    await quiz.save({ session });
+    await Question.insertMany(questions, { session });
     // commit transaction & close session
     await session.commitTransaction();
     session.endSession();
