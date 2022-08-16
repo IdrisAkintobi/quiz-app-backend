@@ -12,11 +12,6 @@ const errorHandlerMiddleware = (
   let statusCode = res.statusCode || 500;
   if (statusCode === 200) statusCode = 400;
 
-  if (err.name === "UnauthorizedError") {
-    message = "Invalid token";
-    statusCode = 401;
-  }
-
   if (err.code === 11000) {
     let key = Object.keys(err.keyValue)[0];
     message = `${key} field has to be unique`;
@@ -27,6 +22,13 @@ const errorHandlerMiddleware = (
     err.issues.map((i) => (message[i.path[0]] = i.message));
   }
 
+  if (err.message === "Not found") {
+    statusCode = 404;
+  }
+
+  if (process.env.NODE_ENV !== "production") {
+    console.log(err.stack);
+  }
   res.status(statusCode).json({ message });
 };
 
