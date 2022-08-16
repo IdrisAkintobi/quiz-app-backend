@@ -23,10 +23,8 @@ const deleteQuiz = asyncHandler(async (req: Request, res: Response) => {
   session.startTransaction();
 
   try {
-    await Promise.all([
-      quiz.delete({ session }),
-      Question.deleteMany({ quiz: id }, { session }),
-    ]);
+    await quiz.delete({ session });
+    await Question.deleteMany({ quiz: id }, { session });
     // commit transaction & close session
     await session.commitTransaction();
     session.endSession();
