@@ -1,6 +1,8 @@
 import mongoose from "mongoose";
 import { MongoMemoryReplSet } from "mongodb-memory-server";
 
+jest.mock("ioredis", () => jest.requireActual("ioredis-mock"));
+
 let testMongo: MongoMemoryReplSet;
 beforeAll(async () => {
   testMongo = await MongoMemoryReplSet.create();
