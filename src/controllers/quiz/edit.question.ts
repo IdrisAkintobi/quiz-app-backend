@@ -4,6 +4,7 @@ import { Question } from "../../model/question.model";
 import { questionValidator } from "../../utils/validators/create.validator";
 import asyncHandler from "express-async-handler";
 import { validateUrl } from "../../utils/validators/queryAndParamsValidator";
+import { deleteRedisQuiz } from "../../utils/delete.redis.quiz";
 
 const editQuestion = asyncHandler(async (req: Request, res: Response) => {
   const author = req.auth.id;
@@ -26,7 +27,9 @@ const editQuestion = asyncHandler(async (req: Request, res: Response) => {
 
   const data = questionValidator.parse(req.body);
   questionData.set(data);
-  await questionData.save();
+
+  //save question to db and delete redis cache
+  await Promise.all([questionData.save(), deleteRedisQuiz(questionData.quiz)]);
 
   const { id: _, __v, ...updatedQuestion } = questionData.toJSON();
   res.status(200).json({ data: updatedQuestion });
