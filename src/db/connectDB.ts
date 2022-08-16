@@ -22,7 +22,7 @@ const connectDB = async () => {
   }
 };
 
-export const redisClient = new Redis({
+const redisClient = new Redis({
   host: REDIS_HOST,
   port: (REDIS_PORT as any) || 6379,
   password: REDIS_PASSWORD,
@@ -38,4 +38,4 @@ redisClient.on("error", (err) => {
   redisClient.disconnect();
 });
 
-export default connectDB;
+export {connectDB, redisClient};
