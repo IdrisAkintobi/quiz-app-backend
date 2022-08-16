@@ -1,48 +1,30 @@
-version: '3.8'
-services: 
-  mongodb:
-    image: mongo
-    command: mongod --quiet --logpath /dev/null 
-    restart: unless-stopped
-    env_file: ./.env
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
-      - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
-    ports:
-      - $MONGODB_LOCAL_PORT:$MONGODB_DOCKER_PORT
-    volumes: 
-      - db:/data/db
+version: "3.8"
+services:
   redis:
     image: redis:6.2-alpine
     env_file: ./.env
     ports:
-      - $REDIS_LOCAL_PORT:$REDIS_DOCKER_PORT
+      - $REDIS_LOCAL_PORT:$REDIS_PORT
     command: redis-server --save 20 1 --loglevel warning --requirepass $REDIS_PASSWORD
-    volumes: 
+    volumes:
       - redis:/data
   app:
-    build: 
+    build:
       context: ./
       dockerfile: Dockerfile
     restart: unless-stopped
     env_file: ./.env
-    environment: 
-      - MONGO_HOST=mongodb
+    environment:
       - REDIS_HOST=redis
-    depends_on: 
-      - mongodb
+    depends_on:
       - redis
-    volumes: 
+    volumes:
       - /node_modules
-    ports: 
+    ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     links:
-      - mongodb
       - redis
     stdin_open: true
     tty: true
-volumes: 
-  db:
-    driver: local
+volumes:
   redis:
-    driver: local
