@@ -15,7 +15,7 @@ const router = Router();
 router.post("/create-quiz", authorize, createQuiz);
 router.get("/display-quiz/:id", authorize, displayQuiz);
 router.get("/list-all-quiz", authorize, getAllQuiz);
-router.patch("/edit-question/:id", authorize, editQuestion);
+router.put("/edit-question/:id", authorize, editQuestion);
 router.patch("/edit-quiz/:id", authorize, editQuiz);
 router.post("/submit-solution/:id", authorize, submitSolution);
 router.get("/my-solutions", authorize, getSolutionsReport);

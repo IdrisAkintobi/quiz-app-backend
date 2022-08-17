@@ -31,7 +31,7 @@ const editQuestion = asyncHandler(async (req: Request, res: Response) => {
   //save question to db and delete redis cache
   await Promise.all([questionData.save(), deleteRedisQuiz(questionData.quiz)]);
 
-  const { id: _, __v, ...updatedQuestion } = questionData.toJSON();
+  const { id: _, __v, quiz, ...updatedQuestion } = questionData.toJSON();
   res.status(200).json({ data: updatedQuestion });
 });
 
