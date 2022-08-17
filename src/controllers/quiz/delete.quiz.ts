@@ -4,6 +4,7 @@ import { startSession } from "mongoose";
 import { Quiz } from "../../model/quiz.model";
 import { Question } from "../../model/question.model";
 import { validateUrl } from "../../utils/validators/queryAndParamsValidator";
+import { deleteRedisQuiz } from "../../utils/delete.redis.quiz";
 
 const deleteQuiz = asyncHandler(async (req: Request, res: Response) => {
   const { id } = validateUrl(req);
@@ -25,8 +26,8 @@ const deleteQuiz = asyncHandler(async (req: Request, res: Response) => {
   try {
     await quiz.delete({ session });
     await Question.deleteMany({ quiz: id }, { session });
-    // commit transaction & close session
-    await session.commitTransaction();
+    // commit transaction, delete redis cache & close session
+    await Promise.all([session.commitTransaction(), deleteRedisQuiz(id!)])
     session.endSession();
   } catch (error) {
     // abort transaction & close session
