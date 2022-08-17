@@ -19,7 +19,7 @@ app.use(
   jwt({
     secret: process.env.JWT_SECRET as string,
     algorithms: ["HS256"],
-  }).unless({ path: ["/api/user/signup", "/api/user/login"] })
+  }).unless({ path: ["/api/user/signup", "/api/user/login", "/"] })
 );
 
 //Routes
