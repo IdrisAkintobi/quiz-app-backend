@@ -92,6 +92,24 @@ it("User can edit question", async () => {
   expect(rData.question).toBe(data.edit.question);
   expect(rData.quiz).toBe(quiz.id);
 });
+it("Options must be more than answer", async () => {
+  const response = await request(app)
+    .patch(`/api/quiz/edit-question/${questions[0].id}`)
+    .set("Authorization", `Bearer ${token1}`)
+    .send(data.badAns)
+    .expect(400);
+  const { message } = response.body;
+  expect(message.options).toBe("Options must be more than answer");
+});
+it("Type of answer must correspond", async () => {
+  const response = await request(app)
+    .patch(`/api/quiz/edit-question/${questions[0].id}`)
+    .set("Authorization", `Bearer ${token1}`)
+    .send(data.badType)
+    .expect(400);
+  const { message } = response.body;
+  expect(message.type).toBe("Type of answer must correspond");
+});
 
 it("User can publish quiz", async () => {
   const response = await request(app)

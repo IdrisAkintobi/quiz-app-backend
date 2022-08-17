@@ -15,6 +15,18 @@ export default {
     answer: ["Kelvin", "Fahrenheit", "Celsius"],
     type: "multipleAns",
   },
+  badAns: {
+    question: "Temperature can be measured in?",
+    options: ["Celsius", "Liters"],
+    answer: ["Kelvin", "Fahrenheit", "Celsius"],
+    type: "multipleAns",
+  },
+  badType: {
+    question: "Temperature can be measured in?",
+    options: ["Kelvin", "Fahrenheit", "Gram", "Celsius", "Liters"],
+    answer: ["Kelvin", "Fahrenheit", "Celsius"],
+    type: "singleAns",
+  },
   quiz: {
     title: "first test quiz",
     questions: [
