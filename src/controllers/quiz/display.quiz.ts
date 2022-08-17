@@ -27,7 +27,7 @@ const displayQuiz = asyncHandler(async (req: Request, res: Response) => {
 
     const questions = await Question.find({ quiz: id }, [
       "-__v",
-      "-quizId",
+      "-quiz",
       "-answer",
     ]);
     //save questions in redis
