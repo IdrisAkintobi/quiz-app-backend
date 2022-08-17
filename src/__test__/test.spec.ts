@@ -25,10 +25,7 @@ it("User is created", async () => {
     .send(data.user1)
     .expect(201);
 
-  const responseTwo = await request(app)
-    .post("/api/user/signup")
-    .send(data.user2)
-    .expect(201);
+  await request(app).post("/api/user/signup").send(data.user2).expect(201);
 
   const message = responseOne.body.message;
   expect(message).toBe("User created successfully");
@@ -84,17 +81,16 @@ it("User can edit quiz", async () => {
 
 it("User can edit question", async () => {
   const response = await request(app)
-    .patch(`/api/quiz/edit-question/${questions[0].id}`)
+    .put(`/api/quiz/edit-question/${questions[0].id}`)
     .set("Authorization", `Bearer ${token1}`)
     .send(data.edit)
     .expect(200);
   const { data: rData } = response.body;
-  expect(rData.question).toBe(data.edit.question);
-  expect(rData.quiz).toBe(quiz.id);
+  expect(rData).toMatchObject(data.edit);
 });
 it("Options must be more than answer", async () => {
   const response = await request(app)
-    .patch(`/api/quiz/edit-question/${questions[0].id}`)
+    .put(`/api/quiz/edit-question/${questions[0].id}`)
     .set("Authorization", `Bearer ${token1}`)
     .send(data.badAns)
     .expect(400);
@@ -103,7 +99,7 @@ it("Options must be more than answer", async () => {
 });
 it("Type of answer must correspond", async () => {
   const response = await request(app)
-    .patch(`/api/quiz/edit-question/${questions[0].id}`)
+    .put(`/api/quiz/edit-question/${questions[0].id}`)
     .set("Authorization", `Bearer ${token1}`)
     .send(data.badType)
     .expect(400);
