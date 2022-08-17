@@ -33,9 +33,8 @@ redisClient.on("connect", () =>
 );
 redisClient.on("error", (err) => {
   console.log(`🚩 Redis connection error ---- ${err}`);
-  //TODO: to be removed in production
-  //Disconnect from Redis i.e on OS doesn't support Redis
-  redisClient.disconnect();
+  //exit process if redis connection error
+  process.exit(1);
 });
 
-export {connectDB, redisClient};
+export { connectDB, redisClient };
