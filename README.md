@@ -52,6 +52,7 @@ All API requests are made by sending a secure HTTPS request using one of the fol
 - `POST` Create a data
 - `GET` Get a data
 - `PATCH` Edit a data
+- `PUT` Replace a data
 - `DELETE` Delete a data
 
 ## Authentication
