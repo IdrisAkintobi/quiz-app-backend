@@ -5,9 +5,9 @@ import uniq from "lodash/uniq";
 
 const questionValidator = z
   .object({
-    question: z.string(),
-    answer: z.array(z.string()).min(1).max(5),
-    options: z.array(z.string()).min(2).max(5),
+    question: z.string().min(4).max(256),
+    answer: z.array(z.string().min(1)).min(1).max(5),
+    options: z.array(z.string().min(1)).min(2).max(5),
     type: z.enum(["singleAns", "multipleAns"]),
   })
   .refine((data) => difference(data.answer, data.options).length === 0, {
