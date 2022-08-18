@@ -14,6 +14,7 @@ A RESTful API for quiz builder where users can create their own quizzes and othe
 ## Documentation
 
 - Api is currently hosted at [Amazon EC2](http://3.138.190.59/)
+- [Project video](#project-video)
 
 ## Getting Started
 
