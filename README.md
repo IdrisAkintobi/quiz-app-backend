@@ -86,5 +86,3 @@ Each response will be returned with one of the following HTTP status codes:
 [![Quiz-engine](https://res.cloudinary.com/appoga/image/upload/v1660810118/quiz-engine_agdqi6.png)](https://res.cloudinary.com/appoga/video/upload/v1660810860/Quiz_Engine_API_Demo_trvlen.mp4 "Quiz-engine API demo")
 
 #
-
-#
