@@ -1,4 +1,4 @@
-# Quiz builder web API
+# Quiz engine API
 
 A RESTful API for quiz builder where users can create their own quizzes and other users can take them and see how many questions they got right.
 
