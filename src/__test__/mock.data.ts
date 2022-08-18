@@ -15,7 +15,25 @@ export default {
     answer: ["Kelvin", "Fahrenheit", "Celsius"],
     type: "multipleAns",
   },
-  badAns: {
+  emptyString: {
+    question: "Temperature can be measured in?",
+    options: ["", "Fahrenheit", "Gram", "Celsius", "Kelvin"],
+    answer: ["Kelvin", "Fahrenheit", "Celsius"],
+    type: "multipleAns",
+  },
+  unUniqueOpts: {
+    question: "Temperature can be measured in?",
+    options: ["Kelvin", "Fahrenheit", "Gram", "Celsius", "Celsius"],
+    answer: ["Kelvin", "Fahrenheit", "Celsius"],
+    type: "multipleAns",
+  },
+  unUniqueAns: {
+    question: "Temperature can be measured in?",
+    options: ["Kelvin", "Fahrenheit", "Gram", "Celsius", "Liters"],
+    answer: ["Kelvin", "Kelvin", "Celsius"],
+    type: "multipleAns",
+  },
+  lessOpts: {
     question: "Temperature can be measured in?",
     options: ["Celsius", "Liters"],
     answer: ["Kelvin", "Fahrenheit", "Celsius"],

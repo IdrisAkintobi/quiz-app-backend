@@ -18,17 +18,19 @@ const questionValidator = z
     message: "Options must be more than answer",
     path: ["options"],
   })
-  .refine((data) => uniq(data.options).length === data.options.length, {
-    message: "Options must be unique",
-    path: ["options"],
-  })
   .refine(
     (data) =>
-      data.type === "singleAns"
-        ? data.answer.length === 1
-        : data.type === "multipleAns"
-        ? data.answer.length > 1
-        : false,
+      uniq(data.options).length === data.options.length &&
+      uniq(data.answer).length === data.answer.length,
+    {
+      message: "Options and answers must be unique",
+      path: ["options"],
+    }
+  )
+  .refine(
+    (data) =>
+      (data.type === "singleAns" && data.answer.length === 1) ||
+      (data.type === "multipleAns" && data.answer.length > 1),
     {
       message: "Type of answer must correspond",
       path: ["type"],

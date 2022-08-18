@@ -92,10 +92,37 @@ it("Options must be more than answer", async () => {
   const response = await request(app)
     .put(`/api/quiz/edit-question/${questions[0].id}`)
     .set("Authorization", `Bearer ${token1}`)
-    .send(data.badAns)
+    .send(data.lessOpts)
     .expect(400);
   const { message } = response.body;
   expect(message.options).toBe("Options must be more than answer");
+});
+it("Empty strings can't be used", async () => {
+  const response = await request(app)
+    .put(`/api/quiz/edit-question/${questions[0].id}`)
+    .set("Authorization", `Bearer ${token1}`)
+    .send(data.emptyString)
+    .expect(400);
+  const { message } = response.body;
+  expect(message.options).toBe("String must contain at least 1 character(s)");
+});
+it("Options must be unique", async () => {
+  const response = await request(app)
+    .put(`/api/quiz/edit-question/${questions[0].id}`)
+    .set("Authorization", `Bearer ${token1}`)
+    .send(data.unUniqueOpts)
+    .expect(400);
+  const { message } = response.body;
+  expect(message.options).toBe("Options and answers must be unique");
+});
+it("Options must be unique", async () => {
+  const response = await request(app)
+    .put(`/api/quiz/edit-question/${questions[0].id}`)
+    .set("Authorization", `Bearer ${token1}`)
+    .send(data.unUniqueAns)
+    .expect(400);
+  const { message } = response.body;
+  expect(message.options).toBe("Options and answers must be unique");
 });
 it("Type of answer must correspond", async () => {
   const response = await request(app)
