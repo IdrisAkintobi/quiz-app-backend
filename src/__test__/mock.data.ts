@@ -35,9 +35,9 @@ export default {
         options: [
           "Baruch Spinoza",
           "Denis Diderot",
-          "Jean-Paul Sartre",
+          "René Descartes",
           "Andre Descartes",
-          "Denis Diderot",
+          "George Diderot",
         ],
         question:
           "Which philosopher famously said 'One cannot conceive anything so strange and so implausible that it has not already been said by one philosopher or another'?",
@@ -97,7 +97,6 @@ export default {
         ],
         question:
           "Which Bridge Features On The Poster To The Woody Allen Film Manhattan?",
-        tags: ["bridges", "new_york", "film", "film_and_tv"],
         type: "singleAns",
       },
       {
@@ -110,7 +109,6 @@ export default {
           "Journey",
         ],
         question: "Chrissie Hynde was in which early eighties group?",
-        tags: ["music"],
         type: "singleAns",
       },
       {
@@ -130,14 +128,12 @@ export default {
         ],
         question:
           "Which actor played the role of William 'Bill the Butcher' Cutting in Gangs of New York?",
-        tags: ["acting", "film", "people", "film_and_tv"],
         type: "singleAns",
       },
       {
         answer: ["Niger–Congo"],
         options: ["Uralic", "Arena", "Turkic", "Niger–Congo", "Austroasiatic"],
         question: "The language 'Yoruba' belongs to which language family?",
-        tags: ["language", "society_and_culture"],
         type: "singleAns",
       },
     ],

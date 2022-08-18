@@ -1,4 +1,7 @@
 import { z } from "zod";
+// import intersection from "lodash/intersection";
+import difference from "lodash/difference";
+import uniq from "lodash/uniq";
 
 const questionValidator = z
   .object({
@@ -7,8 +10,16 @@ const questionValidator = z
     options: z.array(z.string()).min(2).max(5),
     type: z.enum(["singleAns", "multipleAns"]),
   })
+  .refine((data) => difference(data.answer, data.options).length === 0, {
+    message: "All answers must be in options",
+    path: ["answer"],
+  })
   .refine((data) => data.options.length > data.answer.length, {
     message: "Options must be more than answer",
+    path: ["options"],
+  })
+  .refine((data) => uniq(data.options).length === data.options.length, {
+    message: "Options must be unique",
     path: ["options"],
   })
   .refine(
