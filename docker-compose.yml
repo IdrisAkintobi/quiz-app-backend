@@ -6,11 +6,8 @@ services:
     ports:
       - $REDIS_LOCAL_PORT:$REDIS_PORT
     command: redis-server --save 20 1 --loglevel warning --requirepass $REDIS_PASSWORD
-    volumes:
-      - redis:/data
   app:
     build:
-      context: ./
       dockerfile: Dockerfile
     restart: unless-stopped
     env_file: ./.env
@@ -19,12 +16,7 @@ services:
     depends_on:
       - redis
     volumes:
-      - /node_modules
+      - ./src:/app/src
+      - /app/node_modules
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
-    links:
-      - redis
-    stdin_open: true
-    tty: true
-volumes:
-  redis:
