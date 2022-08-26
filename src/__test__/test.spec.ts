@@ -115,7 +115,7 @@ it("Options must be unique", async () => {
   const { message } = response.body;
   expect(message.options).toBe("Options and answers must be unique");
 });
-it("Options must be unique", async () => {
+it("Answers must be unique", async () => {
   const response = await request(app)
     .put(`/api/quiz/edit-question/${questions[0].id}`)
     .set("Authorization", `Bearer ${token1}`)
