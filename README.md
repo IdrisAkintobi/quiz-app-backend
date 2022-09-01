@@ -13,7 +13,7 @@ A RESTful API for quiz builder where users can create their own quizzes and othe
 
 ## Documentation
 
-- Api is currently hosted at [Amazon EC2](http://3.138.190.59/)
+- Api is currently hosted at [Amazon EC2](http://18.220.216.157/)
 - [Project video](#project-video)
 
 ## Getting Started
@@ -79,7 +79,7 @@ Each response will be returned with one of the following HTTP status codes:
 
 #
 
-[![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/19915303/VUjTmPCY)     [![AWS](https://a0.awsstatic.com/libra-css/images/logos/aws_smile-header-desktop-en-white_59x35.png)](http://ec2-3-138-190-59.us-east-2.compute.amazonaws.com//)
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://documenter.getpostman.com/view/19915303/VUjTmPCY)     [![AWS](https://a0.awsstatic.com/libra-css/images/logos/aws_smile-header-desktop-en-white_59x35.png)](http://18.220.216.157/)
 
 #
 
