@@ -1,0 +1,12 @@
+* text=auto eol=lf
+*.{cmd,[cC][mM][dD]} text eol=crlf
+*.{bat,[bB][aA][tT]} text eol=crlf
+
+# Always upload Unix-style line endings (LF), even on Windows
+# git config --global core.autocrlf input
+
+# Disable line-ending conversion entirely
+# git config --global core.autocrlf false
+
+# Disable line-ending conversion for a specific repository
+# git config core.autocrlf false
