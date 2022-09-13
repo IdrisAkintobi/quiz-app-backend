@@ -6,6 +6,16 @@ services:
     ports:
       - $REDIS_LOCAL_PORT:$REDIS_PORT
     command: redis-server --save 20 1 --loglevel warning --requirepass $REDIS_PASSWORD
+  mess:
+    image: idrisakintobi/mongo-event-sourcing
+    env_file: ./.env
+    environment:
+      - NODE_ENV=production
+      - PORT=$MESS_PORT
+    volumes:
+      - ./config:/usr/src/app/config
+    ports:
+      - $MESS_LOCAL_PORT:$MESS_PORT
   app:
     build:
       dockerfile: Dockerfile
@@ -15,6 +25,7 @@ services:
       - REDIS_HOST=redis
     depends_on:
       - redis
+      - mess
     volumes:
       - ./src:/app/src
       - /app/node_modules
