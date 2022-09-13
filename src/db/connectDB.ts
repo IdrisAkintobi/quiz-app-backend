@@ -2,10 +2,8 @@ import mongoose from "mongoose";
 import Redis from "ioredis";
 
 const {
-  ATLAS_HOST: DB_Host,
-  MONGODB_NAME: DB_Name,
-  MONGODB_USER: DB_User,
-  MONGODB_PASSWORD: DB_Pwd,
+  MONGODB_HOST,
+  MONGODB_URL,
   REDIS_HOST,
   REDIS_PORT,
   REDIS_PASSWORD,
@@ -13,9 +11,9 @@ const {
 
 const connectDB = async () => {
   try {
-    const uri = `mongodb+srv://${DB_User}:${DB_Pwd}@${DB_Host}/${DB_Name}?retryWrites=true&w=majority`;
+    const uri = MONGODB_URL as string;
     mongoose.connect(uri);
-    console.log(`🔌 Database connected to ${DB_Host}`);
+    console.log(`🔌 Database connected to ${MONGODB_HOST}`);
   } catch (err) {
     console.log(`could not connect to mongodb ---- ${err}`);
     process.exit(1);
